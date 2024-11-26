@@ -22,13 +22,22 @@ public class ColourTableTest {
     // Test adding valid colours to ColourTable
     @Test
     void testAddValidColour() {
-        // New table object with size of 4
         ColourTable table = new ColourTable(4);
 
         assertDoesNotThrow(() -> table.add(255,0,0)); // Red
         assertDoesNotThrow(() -> table.add(0,255,0)); // Green
         assertDoesNotThrow(() -> table.add(0,0,255)); // Blue
         assertDoesNotThrow(() -> table.add(255,255,255)); // White
+
+    }
+
+    // Test adding invalid colours to ColourTable
+    @Test
+    void testAddInvalidColour() {
+        ColourTable table = new ColourTable(4);
+
+        assertThrows(IllegalArgumentException.class,() -> table.add(-1,0,0)); // Test number <0
+        assertThrows(IllegalArgumentException.class,() -> table.add(0,0,256)); // Test number >256
 
     }
 
