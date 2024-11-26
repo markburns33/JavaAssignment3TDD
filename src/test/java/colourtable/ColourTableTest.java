@@ -41,5 +41,16 @@ public class ColourTableTest {
 
     }
 
+    // Test for adding colours beyond the size of the ColourTable
+    @Test
+    void testMaxCapacity() {
+        ColourTable table = new ColourTable(2);
+
+        assertDoesNotThrow(() -> table.add(255,0,0)); // 1
+        assertDoesNotThrow(() -> table.add(0,255,0)); // 2
+
+        assertThrows(IllegalStateException.class,() -> table.add(255,255,255)); // 3 -- beyond max capacity
+    }
+
 
 }
